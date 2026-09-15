@@ -68,5 +68,20 @@ x << {limit: "SEM_VALUE_MAX",
 x << {limit: "SIGQUEUE_MAX", 
       descr: "maximum number of signals that can be queued for a process", 
       name_arg: "_SC_SIGQUEUE_MAX"}
+x << {limit: "STREAM_MAX", 
+      descr: "maximum number of standard I/O streams per process at any given time; if defined, it must have the same value as FOPEN_MAX", 
+      name_arg: "_SC_STREAM_MAX"}
+x << {limit: "SYMLOOP_MAX", 
+      descr: "number of symbolic links that can be traversed during pathname resolution", 
+      name_arg: "_SC_SYMLOOP_MAX"}
+x << {limit: "TIMER_MAX", 
+      descr: "maximum number of timers per process", 
+      name_arg: "_SC_TIMER_MAX"}
+x << {limit: "TTY_NAME_MAX", 
+      descr: "length of a terminal device name, including the terminating null", 
+      name_arg: "_SC_TTY_NAME_MAX"}
+x << {limit: "TZNAME_MAX", 
+      descr: "maximum number of bytes for a time zone name", 
+      name_arg: "_SC_TZNAME_MAX"}
 ################################
 print data.to_yaml
