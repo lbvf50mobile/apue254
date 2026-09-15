@@ -3,4 +3,8 @@
 # STDIN yaml => STDOUNT HTML
 #
 
-p "<html>Hi</html>"
+require_relative 'tmplt/top.rb'
+require_relative 'tmplt/body.rb'
+require_relative 'tmplt/foot.rb'
+
+puts @top+@body+@foot
