@@ -15,7 +15,7 @@ x << {limit: "ARG_MAX",
       descr: "maximum length, in bytes, of arguments to the exec functions", 
       name_arg: "_SC_ARG_MAX"}
 x << {limit: "ATEXIT_MAX", 
-      descr: "maximum number of functions that can be registered with the atexit function ", 
+      descr: "maximum number of functions that can be registered with the atexit function", 
       name_arg: "_SC_ATEXIT_MAX"}
 x << {limit: "CHILD_MAX",
       descr: "maximum number of processes per real user ID", 
