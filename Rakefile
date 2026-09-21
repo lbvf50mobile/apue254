@@ -11,7 +11,7 @@ file 'fig2.11.yaml' => %w[yaml_generator.rb] do
 end
 
 file 'src/index.html' => %w[html_generator.rb fig2.11.yaml] + FileList['tmplt/*.erb'] do
-  sh './html_generator.rb fig2.11.yaml > src/index.html' 
+  sh './html_generator.rb fig2.11.yaml > docs/index.html' 
 end
 
 # fig2.11.yaml
