@@ -10,7 +10,7 @@ file 'fig2.11.yaml' => %w[yaml_generator.rb] do
   sh "./yaml_generator.rb > fig2.11.yaml"
 end
 
-file 'src/index.html' => %w[html_generator.rb fig2.11.yaml] + FileList['tmplt/*.rb'] do
+file 'src/index.html' => %w[html_generator.rb fig2.11.yaml] + FileList['tmplt/*.erb'] do
   sh './html_generator.rb fig2.11.yaml > src/index.html' 
 end
 

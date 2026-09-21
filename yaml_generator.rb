@@ -36,7 +36,7 @@ x << {limit: "IOV_MAX",
       descr: "maximum number of iovec structures that can be used with readv or writev", 
       name_arg: "_SC_IOV_MAX"}
 x << {limit: "LINE_MAX", 
-      descr: "maximum length of a utility’s input line", 
+      descr: "maximum length of a utility's input line", 
       name_arg: "_SC_LINE_MAX"}
 x << {limit: "LOGIN_NAME_MAX", 
       descr: "maximum length of a login name", 
