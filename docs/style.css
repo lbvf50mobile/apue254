@@ -1,0 +1,113 @@
+/* APUE 2.5.4 — Tables */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #f8f7f5;
+  --card:     #ffffff;
+  --head:     #f5f4f2;
+  --hover:    #f0efec;
+  --alt:      #faf9f8;
+  --border:   #e8e7e4;
+  --text:     #2c2c2c;
+  --mid:      #5a5a5a;
+  --muted:    #999;
+  --accent:   #c45500;
+  --accentbg: #fff4eb;
+  --radius:   10px;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono:  'Menlo', 'Consolas', 'DejaVu Sans Mono', 'Liberation Mono', 'Courier New', monospace;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* center content */
+body > table {
+  max-width: 960px;
+  margin: 48px auto 80px;
+  display: block;
+}
+
+/* caption as heading */
+caption {
+  caption-side: top;
+  text-align: left;
+  padding: 18px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--head);
+  border-bottom: 1px solid var(--border);
+}
+
+/* card wrapper feel */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* header row */
+thead th {
+  padding: 12px 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  background: var(--head);
+  border-bottom: 1px solid var(--border);
+}
+
+/* body rows */
+tbody td {
+  padding: 12px 24px;
+  font-size: 14px;
+  color: var(--mid);
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--alt); }
+tbody tr:hover { background: var(--hover); }
+
+/* first column — Name of limit — interactive */
+tbody td:first-child {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: help;
+}
+
+tbody td:first-child:hover {
+  color: var(--accent);
+  background: var(--accentbg);
+}
+
+/* third column — name argument — monospace badge */
+tbody td:last-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* mobile */
+@media (max-width: 720px) {
+  body > table { margin: 20px 8px 40px; }
+  thead th, tbody td { padding: 10px 14px; font-size: 13px; }
+  caption { font-size: 15px; padding: 14px 16px; }
+}
