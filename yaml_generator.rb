@@ -54,7 +54,7 @@ x << {limit: "LOGIN_NAME_MAX",
 x << {limit: "NGROUPS_MAX", 
       descr: "maximum number of simultaneous supplementary process group IDs per process", 
       name_arg: "_SC_NGROUPS_MAX",
-      long_descr: ""}
+      long_descr: "NGROUPS_MAX (_SC_NGROUPS_MAX) defines the maximum number of supplementary group IDs that a single process can concurrently belong to in addition to its primary group [The Open Group]. The Unix kernel stores this list directly within its process credential tracking structures to perform rapid O(N) permission validations whenever an application initiates an open() or exec() system call [The Open Group]. While the POSIX/XSI standard mandates a historical baseline of at least 8 groups [The Open Group], modern Linux scaling expands this capacity up to 65,536. In production environments, this limit typically surfaces during enterprise LDAP or Active Directory integrations: if a user belongs to hundreds of corporate security groups and accesses files over an old NFSv3 share—which hardcodes an archaic internal protocol limit of 16 groups—the kernel will silently truncate the group array, causing the file system to reject access with an unexpected EACCES (Permission denied) error."}
 x << {limit: "OPEN_MAX", 
       descr: "one more than the maximum value assigned to a newly created file descriptor", 
       name_arg: "_SC_OPEN_MAX",
