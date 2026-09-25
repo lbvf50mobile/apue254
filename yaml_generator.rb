@@ -58,15 +58,15 @@ x << {limit: "NGROUPS_MAX",
 x << {limit: "OPEN_MAX", 
       descr: "one more than the maximum value assigned to a newly created file descriptor", 
       name_arg: "_SC_OPEN_MAX",
-      long_descr: ""}
+      long_descr: "OPEN_MAX (_SC_OPEN_MAX) defines the maximum number of files and network sockets that a single process is permitted to keep open simultaneously [The Open Group]. The Unix kernel enforces this limit by restricting the size of the process's internal file descriptor table, where each integer index (starting at 0 for stdin, 1 for stdout, 2 for stderr) points to an open file structure. While the historical POSIX/XSI baseline requires a minimum of just 20 [The Open Group], modern Linux systems default to a soft limit of 1024 and a hard limit of 4096 (configurable via ulimit -n). As a Go or Ruby developer, you will encounter this boundary under heavy network traffic: if a high-performance web server (like Puma or a Go HTTP multiplexer) accepts massive concurrent TCP connections without closing them fast enough, the accept() or open() system calls will immediately fail, crashing with the classic EMFILE: Too many open files error."}
 x << {limit: "PAGESIZE", 
       descr: "system memory page size, in bytes", 
       name_arg: "_SC_PAGESIZE",
-      long_descr: ""}
+      long_descr: "PAGESIZE (_SC_PAGESIZE) defines the size of a system memory page in bytes, which represents the smallest fixed-length block of virtual memory allocated by the kernel [The Open Group]. On modern x86_64 and ARM64 architectures running Linux or macOS, this value is almost universally hardcoded to 4096 bytes (4 KB). The operating system handles memory management, paging, and disk I/O caching strictly in blocks of this size rather than individual bytes. In Go and Ruby runtimes, low-level memory allocators and tools leverage this constant to align data structures along page boundaries and manage memory mappings via the mmap() system call, which significantly minimizes CPU translation lookaside buffer (TLB) cache misses and accelerates overall execution speed."}
 x << {limit: "PAGE_SIZE", 
       descr: "system memory page size, in bytes", 
       name_arg: "_SC_PAGE_SIZE",
-      long_descr: ""}
+      long_descr: "PAGE_SIZE (_SC_PAGE_SIZE) is an absolute synonym for PAGESIZE, defining the size of a system memory page in bytes (universally 4096 bytes or 4 KB on modern x86_64/ARM64 architectures) [The Open Group]. The existence of both names is a historical artifact for cross-platform compatibility: PAGESIZE is the official standard mandated by POSIX, while PAGE_SIZE emerged from the XSI, BSD, and System V Unix lineages. To prevent developers from writing platform-specific conditional code (#ifdef), modern system libraries (libc) and the sysconf utility support both tokens interchangeably to yield the identical value. Understanding this system page dimension is critical in Go and Ruby for low-level memory performance, as the kernel maps virtual memory, handles disk caches, and executes memory-backed system calls like mmap() exclusively in blocks aligned to this specific byte threshold."}
 x << {limit: "RE_DUP_MAX", 
       descr: "number of repeated occurrences of a basic regular expression permitted by the regexec and regcomp functions when using the interval notation \{m,n\}", 
       name_arg: "_SC_RE_DUP_MAX",
