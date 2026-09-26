@@ -70,7 +70,7 @@ x << {limit: "PAGE_SIZE",
 x << {limit: "RE_DUP_MAX", 
       descr: "number of repeated occurrences of a basic regular expression permitted by the regexec and regcomp functions when using the interval notation \{m,n\}", 
       name_arg: "_SC_RE_DUP_MAX",
-      long_descr: ""}
+      long_descr: "RE_DUP_MAX (_SC_RE_DUP_MAX) defines the maximum number of repetitions permitted in an interval expression \{m,n\} within a basic or extended regular expression processed by the regcomp() and regexec() functions [The Open Group]. When a pattern like a\{1,1000\} is compiled, the regex engine must internally expand or track the allowed repetition count to match input strings—the value of RE_DUP_MAX sets the hard ceiling on the upper bound n that the engine will accept before rejecting the pattern with REG_BADBR (Invalid back reference or repetition). While the POSIX/XSI standard guarantees a minimum threshold of 255 repetitions [The Open Group], modern GNU libc and BSD regex implementations report far larger values, often 32767, effectively removing the limit for practical purposes. In daily development, this surfaces when developers generate regex patterns dynamically—for example, a Ruby or Go script building a \d{5000} quantifier from user input, or a log-parsing tool constructing a pattern to match long fixed-width fields. If the quantifier exceeds RE_DUP_MAX, regcomp() fails outright, forcing the developer to switch from a single bounded quantifier to explicit alternation or a programmatic loop, since no amount of input preprocessing can bypass a compile-time regex constraint."}
 x << {limit: "RTSIG_MAX", 
       descr: "maximum number of real-time signals reserved for application use", 
       name_arg: "_SC_RTSIG_MAX",
