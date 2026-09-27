@@ -74,7 +74,7 @@ x << {limit: "RE_DUP_MAX",
 x << {limit: "RTSIG_MAX", 
       descr: "maximum number of real-time signals reserved for application use", 
       name_arg: "_SC_RTSIG_MAX",
-      long_descr: ""}
+      long_descr: "RTSIG_MAX (_SC_RTSIG_MAX) defines the maximum number of unique real-time signal identifiers reserved exclusively for application use within the operating system [The Open Group]. Unlike standard POSIX signals (such as SIGINT or SIGKILL) which the kernel can compress or drop if multiple instances arrive simultaneously, real-time signals are guaranteed to be queued and delivered in a strict first-in, first-out (FIFO) order. This constant acts as an architectural boundary, defining the menu of unique signal types available (mandated by POSIX/XSI to be at least 8 [The Open Group] but hardcoded to 32 on modern Linux, spanning from SIGRTMIN to SIGRTMAX). In low-level multi-threaded runtimes and asynchronous architectures, this fixed range allows processes to establish highly reliable, out-of-band communication channels without losing crucial event notifications."}
 x << {limit: "SEM_NSEMS_MAX", 
       descr: "maximum number of semaphores a process can use at one time", 
       name_arg: "_SC_SEM_NSEMS_MAX",
