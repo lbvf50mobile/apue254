@@ -78,7 +78,7 @@ x << {limit: "RTSIG_MAX",
 x << {limit: "SEM_NSEMS_MAX", 
       descr: "maximum number of semaphores a process can use at one time", 
       name_arg: "_SC_SEM_NSEMS_MAX",
-      long_descr: ""}
+      long_descr: "SEM_NSEMS_MAX (_SC_SEM_NSEMS_MAX) defines the maximum number of POSIX semaphores that a single process can concurrently create and maintain in the operating system [The Open Group]. Because semaphores are critical kernel-level sync primitives with dedicated tracking structures and wait queues in Kernel Space, this constraint protects the system's volatile RAM from exhaustion by a runaway process. While the POSIX/XSI baseline mandates a minimum ceiling of at least 256 concurrent semaphores [The Open Group], modern Linux implementations either handle this limit dynamically or scale it to match the global process descriptor table. In everyday Go and Ruby web development, you will rarely hit this system boundary because high-level language runtimes manage concurrency using native User Space abstractions—like channels, sync.Mutex, or Ruby fibers—bypassing heavy kernel semaphores entirely."}
 x << {limit: "SEM_VALUE_MAX", 
       descr: "maximum value of a semaphore", 
       name_arg: "_SC_SEM_VALUE_MAX",
