@@ -82,7 +82,7 @@ x << {limit: "SEM_NSEMS_MAX",
 x << {limit: "SEM_VALUE_MAX", 
       descr: "maximum value of a semaphore", 
       name_arg: "_SC_SEM_VALUE_MAX",
-      long_descr: ""}
+      long_descr: "SEM_VALUE_MAX (_SC_SEM_VALUE_MAX) defines the maximum counter value that a single POSIX semaphore can legally hold [The Open Group]. Because a semaphore acts as an atomic counter tracking available shared resources, this limit determines the absolute ceiling for consecutive increment calls (sem_post) before the kernel blocks the operation and throws an ERANGE or EINVAL overflow error. While the historical XSI standard guarantees a minimum threshold of at least 32,767 (fitting into a signed 16-bit short integer) [The Open Group], modern Linux and glibc scale this boundary up to 2,147,483,647 (the maximum for a 32-bit signed INT_MAX). In production Go or Ruby environments, you will never exhaust this ceiling, but understanding it highlights how the kernel uses integer bit sizes to prevent data corruption in concurrent counters."}
 x << {limit: "SIGQUEUE_MAX", 
       descr: "maximum number of signals that can be queued for a process", 
       name_arg: "_SC_SIGQUEUE_MAX",
