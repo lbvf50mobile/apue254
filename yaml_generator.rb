@@ -86,7 +86,7 @@ x << {limit: "SEM_VALUE_MAX",
 x << {limit: "SIGQUEUE_MAX", 
       descr: "maximum number of signals that can be queued for a process", 
       name_arg: "_SC_SIGQUEUE_MAX",
-      long_descr: ""}
+      long_descr: "SIGQUEUE_MAX (_SC_SIGQUEUE_MAX) defines the maximum number of real-time signals that can be simultaneously queued for a single target process [The Open Group]. While RTSIG_MAX limits the number of unique signal types (the channels), SIGQUEUE_MAX dictates the actual size of the physical buffer in Kernel Space that holds individual pending signals [The Open Group]. When a process fires a real-time signal via sigqueue(), the kernel allocates a structure to ensure it is delivered without loss; if the target process is lagging and this queue fills up to the limit, subsequent signals are rejected with an EAGAIN error [The Open Group]. The POSIX/XSI standard guarantees a minimum queue depth of 32 [The Open Group], but modern Linux systems replace this with a much larger user-wide limit (RLIMIT_SIGPENDING, viewable via ulimit -i), meaning Go and Ruby runtimes are safely insulated from queue overflows during standard asynchronous event routing."}
 x << {limit: "STREAM_MAX", 
       descr: "maximum number of standard I/O streams per process at any given time; if defined, it must have the same value as FOPEN_MAX", 
       name_arg: "_SC_STREAM_MAX",
