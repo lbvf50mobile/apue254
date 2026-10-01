@@ -90,7 +90,7 @@ x << {limit: "SIGQUEUE_MAX",
 x << {limit: "STREAM_MAX", 
       descr: "maximum number of standard I/O streams per process at any given time; if defined, it must have the same value as FOPEN_MAX", 
       name_arg: "_SC_STREAM_MAX",
-      long_descr: ""}
+      long_descr: "STREAM_MAX (_SC_STREAM_MAX) defines the maximum number of standard buffered I/O streams (structures of type FILE *) that a single process can concurrently hold open via standard library functions like fopen() [The Open Group]. Unlike raw kernel-level file descriptors managed by OPEN_MAX, these streams operate strictly within User Space, utilizing internal runtime memory buffers to optimize data transfers before flushing them down to the kernel. To maintain system-wide API predictability, standard compliant libraries ensure that this macro mirrors FOPEN_MAX exactly. While the traditional POSIX/XSI baseline mandates a minimum allowance of just 8 concurrent streams (including stdin, stdout, and stderr) [The Open Group], modern Linux implementations scale this dynamically up to 1024 or to match the running shell's ulimit -n constraint. Go and Ruby developers are entirely decoupled from this specific limitation: Go’s os package interfaces directly with naked kernel descriptors, while Ruby’s native IO library implements its own localized User Space buffering mechanisms, completely bypassing legacy C-library stream abstractions."}
 x << {limit: "SYMLOOP_MAX", 
       descr: "number of symbolic links that can be traversed during pathname resolution", 
       name_arg: "_SC_SYMLOOP_MAX",
