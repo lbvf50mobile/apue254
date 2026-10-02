@@ -4,14 +4,14 @@ task :server do
   sh "./server.rb"
 end
 
-task html: %w[src/index.html]
+task html: %w[docs/index.html]
 
 file 'fig2.11.yaml' => %w[yaml_generator.rb] do 
   sh "./yaml_generator.rb > fig2.11.yaml"
 end
 
-file 'src/index.html' => %w[html_generator.rb fig2.11.yaml] + FileList['tmplt/*.erb'] do
-  sh './html_generator.rb fig2.11.yaml > docs/index.html' 
+file 'docs/index.html' => %w[html_generator.rb fig2.11.yaml] + FileList['tmplt/*.erb'] do |t|
+  sh "./html_generator.rb fig2.11.yaml > #{t.name}"
 end
 
 # fig2.11.yaml
