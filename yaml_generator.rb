@@ -94,7 +94,7 @@ x << {limit: "STREAM_MAX",
 x << {limit: "SYMLOOP_MAX", 
       descr: "number of symbolic links that can be traversed during pathname resolution", 
       name_arg: "_SC_SYMLOOP_MAX",
-      long_descr: ""}
+      long_descr: "SYMLOOP_MAX (_SC_SYMLOOP_MAX) defines the maximum number of symbolic links that the kernel can traverse sequentially when resolving a relative or absolute pathname [The Open Group]. When an application initiates a file system operation—such as a Go os.Open() or a Ruby File.read()—and the target path points to a symlink, the kernel must recursively unravel the link to find the real destination file. This constant sets a rigid boundary for that traversal loop to prevent circular symlinks (e.g., A -> B and B -> A) from causing an infinite recursion that would exhaust kernel stack memory and panic the entire system. While the historical POSIX baseline dictates a minimum threshold of just 8 hops [The Open Group], modern Linux implementations expand this limit to a maximum of 40 consecutive links [The Open Group]; exceeding this 40-hop ceiling causes the system call to instantly abort and return the classic ELOOP: Too many levels of symbolic links error."}
 x << {limit: "TIMER_MAX", 
       descr: "maximum number of timers per process", 
       name_arg: "_SC_TIMER_MAX",
