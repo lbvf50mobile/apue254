@@ -98,7 +98,7 @@ x << {limit: "SYMLOOP_MAX",
 x << {limit: "TIMER_MAX", 
       descr: "maximum number of timers per process", 
       name_arg: "_SC_TIMER_MAX",
-      long_descr: ""}
+      long_descr: "TIMER_MAX (_SC_TIMER_MAX) defines the maximum number of high-precision POSIX interval timers (timer_create) that a single process is allowed to create and maintain simultaneously in the operating system [The Open Group]. Because each of these hardware-backed timers allocates a physical tracking structure within Kernel Space and ties directly into kernel clock interrupts, this ceiling protects the OS from resource exhaustion if an application enters a runaway loop. While the historical POSIX standard mandates a guaranteed minimum of at least 32 concurrent timers per process [The Open Group], modern Linux implementations return -1 for this sysconf query, meaning there is no rigid system-enforced limit beyond the bounds of available physical RAM. In daily Go or Ruby microservice engineering, you will never trigger this kernel threshold because both language runtimes multiplex millions of application-level timers entirely in User Space using a handful of native background threads, completely bypassing heavy kernel-level allocations."}
 x << {limit: "TTY_NAME_MAX", 
       descr: "length of a terminal device name, including the terminating null", 
       name_arg: "_SC_TTY_NAME_MAX",
