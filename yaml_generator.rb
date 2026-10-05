@@ -102,7 +102,7 @@ x << {limit: "TIMER_MAX",
 x << {limit: "TTY_NAME_MAX", 
       descr: "length of a terminal device name, including the terminating null", 
       name_arg: "_SC_TTY_NAME_MAX",
-      long_descr: ""}
+      long_descr: "TTY_NAME_MAX (_SC_TTY_NAME_MAX) defines the maximum length of a terminal device name in bytes, including the terminating null character (\\0) [The Open Group]. When an application queries the path of a current pseudo-terminal (PTY) by calling functions like ttyname_r(), the system library (libc) allocates a fixed-size string buffer to safely store the absolute path (e.g., /dev/pts/42). While the historical POSIX/XSI standard guarantees a minimum threshold of just 9 bytes [The Open Group]—enough to fit basic serial terminal paths like /dev/ttyX—modern Linux implementations scale this buffer limit to match the system-wide path threshold (PATH_MAX), effectively allowing up to 4096 bytes. High-level Go and Ruby developers are completely insulated from this limit because their runtime interactive I/O abstractions manage pseudo-terminal paths via dynamic memory allocations in User Space, preventing buffer overflows during command-line execution."}
 x << {limit: "TZNAME_MAX", 
       descr: "maximum number of bytes for a time zone name", 
       name_arg: "_SC_TZNAME_MAX",
