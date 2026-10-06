@@ -106,6 +106,6 @@ x << {limit: "TTY_NAME_MAX",
 x << {limit: "TZNAME_MAX", 
       descr: "maximum number of bytes for a time zone name", 
       name_arg: "_SC_TZNAME_MAX",
-      long_descr: ""}
+      long_descr: "TTY_NAME_MAX (_SC_TTY_NAME_MAX) defines the maximum length of a terminal device name in bytes, including the terminating null character (\\0) [The Open Group]. While the historical POSIX standard mandates a baseline of just 9 bytes [The Open Group], modern Linux implementations (glibc and musl libc) define this limit as 32 bytes to accommodate standard terminal paths like /dev/pts/123. This constraint directly dictates the memory requirements for the thread-safe ttyname_r() library function. Rather than allocating dynamically, high-level tools ensure compatibility by providing rigid, oversized boundaries; for instance, Ruby's io-console extension hardcodes a 1024-byte stack buffer for its internal ttyname_r calls, which practically eliminates the risk of an ERANGE truncation error on modern Linux systems."}
 ################################
 print data.to_yaml
