@@ -111,3 +111,37 @@ tbody td:last-child {
   thead th, tbody td { padding: 10px 14px; font-size: 13px; }
   caption { font-size: 15px; padding: 14px 16px; }
 }
+
+/* ── long_descr toggle on click ── */
+
+.long_descr {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  transition:
+    max-height 0.35s ease,
+    opacity   0.25s ease,
+    margin-top 0.35s ease;
+}
+
+/* when first td is focused (clicked) — show long_descr in same row */
+tbody td:first-child:focus ~ td .long_descr {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+/* focused state replaces hover — keep the highlight */
+tbody td:first-child:focus {
+  color: var(--accent);
+  background: var(--accentbg);
+  outline: none;
+}
+
+/* remove cursor:help on focused (already open) */
+tbody td:first-child:focus {
+  cursor: pointer;
+}
+/* test */

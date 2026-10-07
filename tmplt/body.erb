@@ -10,8 +10,13 @@
   <tbody>
     <% data.each do |row| %>
       <tr>
-        <td><%= row[:limit] %></td>
-        <td><%= row[:descr] %></td>
+        <td tabindex="0"><%= row[:limit] %></td>
+        <td>
+          <%= row[:descr] %>
+          <div class="long_descr">
+            <%= row[:long_descr] %>
+          </div>
+        </td>
         <td><%= row[:name_arg] %></td>
       </tr>
     <% end %>

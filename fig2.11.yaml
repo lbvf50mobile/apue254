@@ -290,16 +290,61 @@
 - :limit: SYMLOOP_MAX
   :descr: number of symbolic links that can be traversed during pathname resolution
   :name_arg: _SC_SYMLOOP_MAX
-  :long_descr: ''
+  :long_descr: 'SYMLOOP_MAX (_SC_SYMLOOP_MAX) defines the maximum number of symbolic
+    links that the kernel can traverse sequentially when resolving a relative or absolute
+    pathname [The Open Group]. When an application initiates a file system operation—such
+    as a Go os.Open() or a Ruby File.read()—and the target path points to a symlink,
+    the kernel must recursively unravel the link to find the real destination file.
+    This constant sets a rigid boundary for that traversal loop to prevent circular
+    symlinks (e.g., A -> B and B -> A) from causing an infinite recursion that would
+    exhaust kernel stack memory and panic the entire system. While the historical
+    POSIX baseline dictates a minimum threshold of just 8 hops [The Open Group], modern
+    Linux implementations expand this limit to a maximum of 40 consecutive links [The
+    Open Group]; exceeding this 40-hop ceiling causes the system call to instantly
+    abort and return the classic ELOOP: Too many levels of symbolic links error.'
 - :limit: TIMER_MAX
   :descr: maximum number of timers per process
   :name_arg: _SC_TIMER_MAX
-  :long_descr: ''
+  :long_descr: TIMER_MAX (_SC_TIMER_MAX) defines the maximum number of high-precision
+    POSIX interval timers (timer_create) that a single process is allowed to create
+    and maintain simultaneously in the operating system [The Open Group]. Because
+    each of these hardware-backed timers allocates a physical tracking structure within
+    Kernel Space and ties directly into kernel clock interrupts, this ceiling protects
+    the OS from resource exhaustion if an application enters a runaway loop. While
+    the historical POSIX standard mandates a guaranteed minimum of at least 32 concurrent
+    timers per process [The Open Group], modern Linux implementations return -1 for
+    this sysconf query, meaning there is no rigid system-enforced limit beyond the
+    bounds of available physical RAM. In daily Go or Ruby microservice engineering,
+    you will never trigger this kernel threshold because both language runtimes multiplex
+    millions of application-level timers entirely in User Space using a handful of
+    native background threads, completely bypassing heavy kernel-level allocations.
 - :limit: TTY_NAME_MAX
   :descr: length of a terminal device name, including the terminating null
   :name_arg: _SC_TTY_NAME_MAX
-  :long_descr: ''
+  :long_descr: TTY_NAME_MAX (_SC_TTY_NAME_MAX) defines the maximum length of a terminal
+    device name in bytes, including the terminating null character (\0) [The Open
+    Group]. When an application queries the file path of a pseudo-terminal (PTY) using
+    the thread-safe ttyname_r() C-library function, the caller must supply a buffer
+    large enough to store strings like /dev/pts/123. While the historical POSIX standard
+    mandates a baseline of just 9 bytes [The Open Group], modern Linux implementations
+    (including glibc and musl libc) define this limit as 32 bytes to accommodate standard
+    terminal paths. High-level runtimes handle this by allocating static safe margins;
+    for instance, Ruby's io-console extension hardcodes a 1024-byte stack buffer for
+    its ttyname_r wrapper. While this oversized buffer practically eliminates the
+    risk of an ERANGE error or string truncation on standard Linux environments, it
+    highlights how User Space extensions rely on generous fixed-size bounds to safely
+    swallow the underlying OS limits during interactive CLI operations.
 - :limit: TZNAME_MAX
   :descr: maximum number of bytes for a time zone name
   :name_arg: _SC_TZNAME_MAX
-  :long_descr: ''
+  :long_descr: TTY_NAME_MAX (_SC_TTY_NAME_MAX) defines the maximum length of a terminal
+    device name in bytes, including the terminating null character (\0) [The Open
+    Group]. While the historical POSIX standard mandates a baseline of just 9 bytes
+    [The Open Group], modern Linux implementations (glibc and musl libc) define this
+    limit as 32 bytes to accommodate standard terminal paths like /dev/pts/123. This
+    constraint directly dictates the memory requirements for the thread-safe ttyname_r()
+    library function. Rather than allocating dynamically, high-level tools ensure
+    compatibility by providing rigid, oversized boundaries; for instance, Ruby's io-console
+    extension hardcodes a 1024-byte stack buffer for its internal ttyname_r calls,
+    which practically eliminates the risk of an ERANGE truncation error on modern
+    Linux systems.
