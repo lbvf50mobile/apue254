@@ -104,19 +104,35 @@ tbody td:first-child:has(.toggle:checked) label {
   cursor: pointer;
 }
 
-/* Long description toggle */
+/* Long description — decorated callout */
 .long_descr {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
   margin-top: 0;
-  transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.35s ease;
+  padding: 0 14px 0 16px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--mid);
+  border-left: 3px solid transparent;
+  background: transparent;
+  border-radius: 0 6px 6px 0;
+  transition:
+    max-height   0.35s ease,
+    opacity      0.25s ease,
+    margin-top   0.35s ease,
+    padding      0.35s ease,
+    border-color 0.25s ease,
+    background   0.25s ease;
 }
 
 tbody td:first-child:has(.toggle:checked) ~ td .long_descr {
-  max-height: 200px;
+  max-height: 300px;
   opacity: 1;
-  margin-top: 8px;
+  margin-top: 10px;
+  padding: 10px 14px 10px 16px;
+  border-left-color: var(--accent);
+  background: var(--accentbg);
 }
 
 /* Name argument column */
