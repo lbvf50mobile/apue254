@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APUE 2.5.4 Figure 2.1 Limits and namearguments to sysconf</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <table>
@@ -19,7 +19,11 @@
   <tbody>
     
       <tr>
-        <td tabindex="0">ARG_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>ARG_MAX
+          </label>
+        </td>
         <td>
           maximum length, in bytes, of arguments to the exec functions
           <div class="long_descr">
@@ -30,7 +34,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">ATEXIT_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>ATEXIT_MAX
+          </label>
+        </td>
         <td>
           maximum number of functions that can be registered with the atexit function
           <div class="long_descr">
@@ -41,7 +49,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">CHILD_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>CHILD_MAX
+          </label>
+        </td>
         <td>
           maximum number of processes per real user ID
           <div class="long_descr">
@@ -52,7 +64,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">clock ticks/second</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>clock ticks/second
+          </label>
+        </td>
         <td>
           number of clock ticks per second
           <div class="long_descr">
@@ -63,7 +79,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">COLL_WEIGHTS_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>COLL_WEIGHTS_MAX
+          </label>
+        </td>
         <td>
           maximum number of weights that can be assigned to an entry of the LC_COLLATE order keyword in the locale definition file
           <div class="long_descr">
@@ -74,7 +94,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">DELAYTIMER_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>DELAYTIMER_MAX
+          </label>
+        </td>
         <td>
           maximum number of timer expiration overruns
           <div class="long_descr">
@@ -85,7 +109,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">HOST_NAME_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>HOST_NAME_MAX
+          </label>
+        </td>
         <td>
           maximum length of a host name as returned by gethostname
           <div class="long_descr">
@@ -96,7 +124,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">IOV_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>IOV_MAX
+          </label>
+        </td>
         <td>
           maximum number of iovec structures that can be used with readv or writev
           <div class="long_descr">
@@ -107,7 +139,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">LINE_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>LINE_MAX
+          </label>
+        </td>
         <td>
           maximum length of a utility's input line
           <div class="long_descr">
@@ -118,7 +154,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">LOGIN_NAME_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>LOGIN_NAME_MAX
+          </label>
+        </td>
         <td>
           maximum length of a login name
           <div class="long_descr">
@@ -129,7 +169,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">NGROUPS_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>NGROUPS_MAX
+          </label>
+        </td>
         <td>
           maximum number of simultaneous supplementary process group IDs per process
           <div class="long_descr">
@@ -140,7 +184,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">OPEN_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>OPEN_MAX
+          </label>
+        </td>
         <td>
           one more than the maximum value assigned to a newly created file descriptor
           <div class="long_descr">
@@ -151,7 +199,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">PAGESIZE</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>PAGESIZE
+          </label>
+        </td>
         <td>
           system memory page size, in bytes
           <div class="long_descr">
@@ -162,7 +214,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">PAGE_SIZE</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>PAGE_SIZE
+          </label>
+        </td>
         <td>
           system memory page size, in bytes
           <div class="long_descr">
@@ -173,7 +229,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">RE_DUP_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>RE_DUP_MAX
+          </label>
+        </td>
         <td>
           number of repeated occurrences of a basic regular expression permitted by the regexec and regcomp functions when using the interval notation {m,n}
           <div class="long_descr">
@@ -184,7 +244,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">RTSIG_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>RTSIG_MAX
+          </label>
+        </td>
         <td>
           maximum number of real-time signals reserved for application use
           <div class="long_descr">
@@ -195,7 +259,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">SEM_NSEMS_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>SEM_NSEMS_MAX
+          </label>
+        </td>
         <td>
           maximum number of semaphores a process can use at one time
           <div class="long_descr">
@@ -206,7 +274,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">SEM_VALUE_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>SEM_VALUE_MAX
+          </label>
+        </td>
         <td>
           maximum value of a semaphore
           <div class="long_descr">
@@ -217,7 +289,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">SIGQUEUE_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>SIGQUEUE_MAX
+          </label>
+        </td>
         <td>
           maximum number of signals that can be queued for a process
           <div class="long_descr">
@@ -228,7 +304,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">STREAM_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>STREAM_MAX
+          </label>
+        </td>
         <td>
           maximum number of standard I/O streams per process at any given time; if defined, it must have the same value as FOPEN_MAX
           <div class="long_descr">
@@ -239,7 +319,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">SYMLOOP_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>SYMLOOP_MAX
+          </label>
+        </td>
         <td>
           number of symbolic links that can be traversed during pathname resolution
           <div class="long_descr">
@@ -250,7 +334,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">TIMER_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>TIMER_MAX
+          </label>
+        </td>
         <td>
           maximum number of timers per process
           <div class="long_descr">
@@ -261,7 +349,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">TTY_NAME_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>TTY_NAME_MAX
+          </label>
+        </td>
         <td>
           length of a terminal device name, including the terminating null
           <div class="long_descr">
@@ -272,7 +364,11 @@
       </tr>
     
       <tr>
-        <td tabindex="0">TZNAME_MAX</td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden>TZNAME_MAX
+          </label>
+        </td>
         <td>
           maximum number of bytes for a time zone name
           <div class="long_descr">

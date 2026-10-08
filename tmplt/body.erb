@@ -10,7 +10,11 @@
   <tbody>
     <% data.each do |row| %>
       <tr>
-        <td tabindex="0"><%= row[:limit] %></td>
+        <td>
+          <label>
+            <input type="checkbox" class="toggle" hidden><%= row[:limit] %>
+          </label>
+        </td>
         <td>
           <%= row[:descr] %>
           <div class="long_descr">
