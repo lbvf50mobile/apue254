@@ -162,7 +162,7 @@
         <td>
           maximum length of a login name
           <div class="long_descr">
-            
+            LOGIN_NAME_MAX (_SC_LOGIN_NAME_MAX) defines the maximum length of a user login name in bytes, including the terminating null character (\0) [The Open Group]. While the ancient POSIX/XSI standard mandates a historical minimum baseline of just 9 bytes (allowing for traditional 8-character Unix usernames) [The Open Group], the modern Linux kernel scale expands this limit to 256 bytes within its glibc implementation [The Open Group]. This limit directly defines the internal buffer sizes for thread-safe system library functions like getlogin_r(). In daily administrative development (such as running Go or Ruby user management scripts), you will rarely hit this boundary because high-level CLI tools like useradd impose their own stricter input validation limits—often capping usernames at 32 characters—long before the underlying 256-byte operating system boundary can be tested.
           </div>
         </td>
         <td>_SC_LOGIN_NAME_MAX</td>
