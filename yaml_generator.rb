@@ -6,7 +6,7 @@
 require "yaml"
 
 data = {}
-data[:info] = "Figure 2.1 Limits and namearguments to sysconf"
+data[:info] = "Figure 2.11 Limits and namearguments to sysconf"
 data[:data] = []
 x = data[:data]
 # x << {limit: "", descr: "", name_arg: ""}
@@ -50,7 +50,7 @@ x << {limit: "LINE_MAX",
 x << {limit: "LOGIN_NAME_MAX", 
       descr: "maximum length of a login name", 
       name_arg: "_SC_LOGIN_NAME_MAX",
-      long_descr: ""}
+      long_descr: "LOGIN_NAME_MAX (_SC_LOGIN_NAME_MAX) defines the maximum length of a user login name in bytes, including the terminating null character (\\0) [The Open Group]. While the ancient POSIX/XSI standard mandates a historical minimum baseline of just 9 bytes (allowing for traditional 8-character Unix usernames) [The Open Group], the modern Linux kernel scale expands this limit to 256 bytes within its glibc implementation [The Open Group]. This limit directly defines the internal buffer sizes for thread-safe system library functions like getlogin_r(). In daily administrative development (such as running Go or Ruby user management scripts), you will rarely hit this boundary because high-level CLI tools like useradd impose their own stricter input validation limits—often capping usernames at 32 characters—long before the underlying 256-byte operating system boundary can be tested."}
 x << {limit: "NGROUPS_MAX", 
       descr: "maximum number of simultaneous supplementary process group IDs per process", 
       name_arg: "_SC_NGROUPS_MAX",

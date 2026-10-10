@@ -28,7 +28,7 @@ body {
 
 body > table {
   max-width: 960px;
-  margin: 48px auto 80px;
+  margin: 48px auto 10px;
   display: block;
 }
 
@@ -149,4 +149,40 @@ tbody td:last-child {
   body > table { margin: 20px 8px 40px; }
   thead th, tbody td { padding: 10px 14px; font-size: 13px; }
   caption { font-size: 15px; padding: 14px 16px; }
+}
+
+/* ── Navigation list ── */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px auto 20px;
+  max-width: 960px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+ul li {
+  margin: 0;
+}
+
+ul a {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+ul a:hover {
+  background: var(--accentbg);
+  color: var(--accent);
+  border-color: #e8c9a0;
+  transform: translateY(-1px);
 }

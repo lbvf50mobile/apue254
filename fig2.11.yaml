@@ -1,5 +1,5 @@
 ---
-:info: Figure 2.1 Limits and namearguments to sysconf
+:info: Figure 2.11 Limits and namearguments to sysconf
 :data:
 - :limit: ARG_MAX
   :descr: maximum length, in bytes, of arguments to the exec functions

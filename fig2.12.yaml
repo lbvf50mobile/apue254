@@ -1,0 +1,16 @@
+---
+:info: Figure 2.12 Limits and name arguments to pathconf and fpathconf
+:data:
+- :limit: FILESIZEBITS
+  :descr: minimum number of bits needed to represent, as a signed integer value, the
+    maximum size of a regular file allowed in the specified directory
+  :name_arg: _PC_FILESIZEBITS
+  :long_descr: ''
+- :limit: LINK_MAX
+  :descr: maximum value of a file’s link count
+  :name_arg: _PC_LINK_MAX
+  :long_descr: ''
+- :limit: MAX_CANON
+  :descr: maximum number of bytes on a terminal’s canonical input queue
+  :name_arg: _PC_MAX_CANON
+  :long_descr: ''
