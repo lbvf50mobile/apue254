@@ -20,7 +20,7 @@ x << {limit: "LINK_MAX",
 x << {limit: "MAX_CANON", 
       descr: "maximum number of bytes on a terminal’s canonical input queue", 
       name_arg: "_PC_MAX_CANON",
-      long_descr: ""}
+      long_descr: " MAX_CANON (_SC_MAX_CANON) defines the maximum number of bytes in a canonical (line-editing) input line that the terminal driver is guaranteed to buffer before delivering it to the reading process . While POSIX/XSI mandates a historical minimum of 255 bytes , and Linux publicly defines MAX_CANON as 255 in its headers , the practical limit on Linux has long been the line discipline's internal read buffer, N_TTY_BUF_SIZE, which is 4096 bytes . This means the kernel can actually accept and edit canonical lines up to 4096 bytes despite the nominal 255-byte guarantee . Exceeding this boundary causes the kernel to discard input in excess of the limit until a newline is received . For Ruby and Go developers, this constraint is rarely encountered directly because high-level libraries like Readline or bufio typically manage terminal input through non-canonical or buffered modes, making MAX_CANON relevant only when writing low-level terminal utilities that interact directly with termios."}
 x << {limit: "MAX_INPUT", 
       descr: "number of bytes for which space is available on terminal’s input queue", 
       name_arg: "_PC_MAX_INPUT",
