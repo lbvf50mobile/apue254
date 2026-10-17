@@ -24,7 +24,7 @@ x << {limit: "MAX_CANON",
 x << {limit: "MAX_INPUT", 
       descr: "number of bytes for which space is available on terminal’s input queue", 
       name_arg: "_PC_MAX_INPUT",
-      long_descr: ""}
+      long_descr: "MAX_INPUT (_SC_MAX_INPUT) defines the maximum number of bytes that can be queued in the terminal's input buffer before the reading process consumes them, with POSIX mandating a historical minimum of 255 bytes. While Linux publicly defines MAX_INPUT as 255 in accordance with POSIX, the tty line discipline internally uses a 4096-byte read buffer (N_TTY_BUF_SIZE), meaning the kernel can physically queue more input than the nominal MAX_INPUT guarantee before data loss occurs. Exceeding this boundary causes the terminal driver to discard excess data until a line termination is received, or block further writes depending on the flow-control configuration. For Ruby and Go developers, this constraint is rarely encountered because high-level libraries like Readline or bufio typically manage input buffering at the application layer, making MAX_INPUT relevant only for low-level terminal utilities that interact directly with termios or handle rapid, unprocessed keystroke streams."}
 x << {limit: "NAME_MAX", 
       descr: "maximum number of bytes in a filename (does not include a null at end)", 
       name_arg: "_PC_NAME_MAX",
