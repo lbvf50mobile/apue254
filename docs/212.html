@@ -25,12 +25,12 @@
           </label>
         </td>
         <td>
-          minimum number of bits needed to represent, as a signed integer value, the maximum size of a regular file allowed in the specified directory
+          number of bits used to represent file sizes in bytes
           <div class="long_descr">
-            
+            FILESIZEBITS (_SC_FILESIZEBITS) defines the number of bits the operating system uses to represent file sizes in bytes [The Open Group]. On modern 64-bit Linux and macOS architectures, this value is universally 64, theoretically allowing individual files to reach exabyte scales. However, on legacy 32-bit systems, this limit was historically 32, imposing a hard ceiling of 2GB (signed) or 4GB (unsigned) per file. In daily systems programming, attempting to manipulate a file that exceeds this bit-width boundary without Large File Support (LFS) causes kernel system calls like stat(), fstat(), or lseek() to abruptly fail with the classic EOVERFLOW (Value too large for defined data type) error. For Ruby and Go developers, this is largely transparent on modern 64-bit environments—where File.size or os.Stat seamlessly handle massive files—but becomes a critical deployment trap when running 32-bit containers or legacy binaries. In those constrained environments, processing multi-gigabyte logs or datasets will crash unless the underlying runtime or C-extensions are explicitly compiled with large file offsets enabled (e.g., the _FILE_OFFSET_BITS=64 macro in C).
           </div>
         </td>
-        <td>_PC_FILESIZEBITS</td>
+        <td>_SC_FILESIZEBITS</td>
       </tr>
     
       <tr>
@@ -40,12 +40,12 @@
           </label>
         </td>
         <td>
-          maximum value of a file’s link count
+          maximum number of hard links to a single file
           <div class="long_descr">
-            
+            LINK_MAX (_SC_LINK_MAX) defines the maximum number of hard links that can point to a single file's inode within a single filesystem [The Open Group]. Each hard link is simply an additional directory entry referencing the same underlying inode number, sharing the file's data blocks and metadata, with the file being physically deleted from the filesystem only when its link count drops to zero. While the POSIX/XSI standard mandates a historical minimum baseline of just 8 hard links per file [The Open Group], real-world filesystems diverge sharply: ext4 hardcodes a 16-bit link counter, capping at 65,535 links per file, while XFS uses a 32-bit counter with no practical fixed ceiling—only the available inode space limits it. In daily systems programming, attempting to create a hard link beyond the filesystem's threshold causes the link() or linkat() system calls to immediately fail with the classic EMLINK error, meaning "Too many links." For Ruby and Go developers, this boundary rarely surfaces in typical application code where File.link or os.Link are used sparingly, but becomes a critical constraint in infrastructure engineering: backup systems like rsync with --link-dest, snapshot tools, and deduplication engines that aggressively create hard links to save disk space can silently hit this ceiling when consolidating hundreds of thousands of identical configuration files or log entries into a single archive directory.
           </div>
         </td>
-        <td>_PC_LINK_MAX</td>
+        <td>_SC_LINK_MAX</td>
       </tr>
     
       <tr>
@@ -57,7 +57,7 @@
         <td>
           maximum number of bytes on a terminal’s canonical input queue
           <div class="long_descr">
-            
+             MAX_CANON (_SC_MAX_CANON) defines the maximum number of bytes in a canonical (line-editing) input line that the terminal driver is guaranteed to buffer before delivering it to the reading process . While POSIX/XSI mandates a historical minimum of 255 bytes , and Linux publicly defines MAX_CANON as 255 in its headers , the practical limit on Linux has long been the line discipline's internal read buffer, N_TTY_BUF_SIZE, which is 4096 bytes . This means the kernel can actually accept and edit canonical lines up to 4096 bytes despite the nominal 255-byte guarantee . Exceeding this boundary causes the kernel to discard input in excess of the limit until a newline is received . For Ruby and Go developers, this constraint is rarely encountered directly because high-level libraries like Readline or bufio typically manage terminal input through non-canonical or buffered modes, making MAX_CANON relevant only when writing low-level terminal utilities that interact directly with termios.
           </div>
         </td>
         <td>_PC_MAX_CANON</td>
@@ -72,7 +72,7 @@
         <td>
           number of bytes for which space is available on terminal’s input queue
           <div class="long_descr">
-            
+            MAX_INPUT (_SC_MAX_INPUT) defines the maximum number of bytes that can be queued in the terminal's input buffer before the reading process consumes them, with POSIX mandating a historical minimum of 255 bytes. While Linux publicly defines MAX_INPUT as 255 in accordance with POSIX, the tty line discipline internally uses a 4096-byte read buffer (N_TTY_BUF_SIZE), meaning the kernel can physically queue more input than the nominal MAX_INPUT guarantee before data loss occurs. Exceeding this boundary causes the terminal driver to discard excess data until a line termination is received, or block further writes depending on the flow-control configuration. For Ruby and Go developers, this constraint is rarely encountered because high-level libraries like Readline or bufio typically manage input buffering at the application layer, making MAX_INPUT relevant only for low-level terminal utilities that interact directly with termios or handle rapid, unprocessed keystroke streams.
           </div>
         </td>
         <td>_PC_MAX_INPUT</td>
@@ -87,7 +87,7 @@
         <td>
           maximum number of bytes in a filename (does not include a null at end)
           <div class="long_descr">
-            
+            NAME_MAX (_SC_NAME_MAX) defines the maximum number of bytes in a single filename component, excluding the terminating null character [The Open Group]. While the POSIX/XSI standard mandates a historical minimum of just 14 bytes, modern Linux filesystems like ext4 and XFS typically enforce a 255-byte limit—though some stacked or network filesystems impose tighter constraints, such as ecryptfs's 143-character cap. Attempting to create, rename, or open a file with a name exceeding this boundary causes system calls like open() or mkdir() to immediately fail with the classic ENAMETOOLONG error. For Ruby and Go developers, this constraint is generally transparent until hitting edge cases like generating temporary files from long hashes or URLs; in such scenarios, methods like File.open or os.Create will raise an Errno::ENAMETOOLONG or syscall.ENAMETOOLONG exception, requiring developers to explicitly truncate or hash the filename to stay within the filesystem's byte limit.
           </div>
         </td>
         <td>_PC_NAME_MAX</td>
