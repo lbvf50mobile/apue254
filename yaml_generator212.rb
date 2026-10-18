@@ -28,7 +28,7 @@ x << {limit: "MAX_INPUT",
 x << {limit: "NAME_MAX", 
       descr: "maximum number of bytes in a filename (does not include a null at end)", 
       name_arg: "_PC_NAME_MAX",
-      long_descr: ""}
+      long_descr: "NAME_MAX (_SC_NAME_MAX) defines the maximum number of bytes in a single filename component, excluding the terminating null character [The Open Group]. While the POSIX/XSI standard mandates a historical minimum of just 14 bytes, modern Linux filesystems like ext4 and XFS typically enforce a 255-byte limit—though some stacked or network filesystems impose tighter constraints, such as ecryptfs's 143-character cap. Attempting to create, rename, or open a file with a name exceeding this boundary causes system calls like open() or mkdir() to immediately fail with the classic ENAMETOOLONG error. For Ruby and Go developers, this constraint is generally transparent until hitting edge cases like generating temporary files from long hashes or URLs; in such scenarios, methods like File.open or os.Create will raise an Errno::ENAMETOOLONG or syscall.ENAMETOOLONG exception, requiring developers to explicitly truncate or hash the filename to stay within the filesystem's byte limit."}
 x << {limit: "PATH_MAX", 
       descr: "maximum number of bytes in a relative pathname, including the terminating null", 
       name_arg: "_PC_PATH_MAX",
