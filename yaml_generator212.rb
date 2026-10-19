@@ -32,7 +32,7 @@ x << {limit: "NAME_MAX",
 x << {limit: "PATH_MAX", 
       descr: "maximum number of bytes in a relative pathname, including the terminating null", 
       name_arg: "_PC_PATH_MAX",
-      long_descr: ""}
+      long_descr: "PATH_MAX (_SC_PATH_MAX) defines the maximum number of bytes in a pathname, including the terminating null character [The Open Group]. While the POSIX standard mandates a minimum acceptable value of 256 bytes for _POSIX_PATH_MAX, modern Linux systems typically enforce a 4096-byte limit as defined in kernel headers. Attempting to resolve or manipulate a file path that exceeds this boundary causes system calls like open(), stat(), or getcwd() to immediately fail with the classic ENAMETOOLONG error. For Ruby and Go developers, this constraint is generally transparent, but it surfaces as a critical edge case when dealing with deeply nested directory structures, such as legacy node_modules or complex temporary file hierarchies; in these scenarios, methods like File.open or os.Open will raise an Errno::ENAMETOOLONG or syscall.ENAMETOOLONG exception, forcing developers to explicitly shorten path components or restructure the directory layout."}
 x << {limit: "PIPE_BUF", 
       descr: "maximum number of bytes that can be written atomically to a pipe", 
       name_arg: "_PC_PIPE_BUF",
