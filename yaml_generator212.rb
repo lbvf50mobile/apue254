@@ -36,7 +36,7 @@ x << {limit: "PATH_MAX",
 x << {limit: "PIPE_BUF", 
       descr: "maximum number of bytes that can be written atomically to a pipe", 
       name_arg: "_PC_PIPE_BUF",
-      long_descr: ""}
+      long_descr: "PIPE_BUF (_SC_PIPE_BUF) defines the maximum number of bytes that can be written to a pipe or FIFO in a single write() call such that the operation is guaranteed to be atomic, meaning it will not be interleaved with data from other concurrent writers [The Open Group]. While the POSIX standard mandates a minimum of 512 bytes, modern Linux kernels enforce a 4096-byte limit (matching the system memory page size). If a single write() exceeds this boundary, the kernel drops the atomicity guarantee: data from multiple processes may become scrambled, or, in non-blocking mode, the call may perform a partial write. For Ruby and Go developers, this constraint is critical when building concurrent IPC mechanisms or centralized loggers; writing payloads larger than 4KB to a shared IO.pipe (Ruby) or os.Pipe (Go) without external synchronization (like a Mutex) risks data corruption, forcing developers to explicitly chunk their messages or serialize access at the application layer."}
 x << {limit: "_POSIX_TIMESTAMP_RESOLUTION", 
       descr: "resolution in nanoseconds for file timestamps", 
       name_arg: "_PC_TIMESTAMP_RESOLUTION",
