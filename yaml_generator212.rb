@@ -40,7 +40,7 @@ x << {limit: "PIPE_BUF",
 x << {limit: "_POSIX_TIMESTAMP_RESOLUTION", 
       descr: "resolution in nanoseconds for file timestamps", 
       name_arg: "_PC_TIMESTAMP_RESOLUTION",
-      long_descr: ""}
+      long_descr: "_PC_TIMESTAMP_RESOLUTION defines the resolution of file timestamps (atime, mtime, ctime) in nanoseconds [The Open Group]. While the POSIX standard mandates a coarse minimum resolution of one second, modern Linux filesystems like ext4, XFS, and btrfs support nanosecond precision—though XFS only gained this capability in Linux 5.10, and the effective resolution is ultimately bounded by the system clock's granularity. This granularity is critical for build systems, backup utilities, and distributed synchronization, as coarser historical limits (such as FAT32's 2-second resolution) can easily cause race conditions where rapid, successive file modifications go undetected. For Ruby and Go developers, methods like File.mtime or os.Stat().ModTime() directly expose the underlying filesystem's capability; therefore, while modern local development enjoys precise change tracking, deploying applications that rely on timestamp comparisons to legacy or network-mounted filesystems requires explicit caution to avoid subtle synchronization bugs."}
 x << {limit: "SYMLINK_MAX", 
       descr: "number of bytes in a symbolic link", 
       name_arg: "_PC_SYMLINK_MAX",
