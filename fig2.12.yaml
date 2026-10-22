@@ -139,4 +139,20 @@
 - :limit: SYMLINK_MAX
   :descr: number of bytes in a symbolic link
   :name_arg: _PC_SYMLINK_MAX
-  :long_descr: ''
+  :long_descr: 'SYMLINK_MAX (_PC_SYMLINK_MAX) defines the maximum number of bytes
+    that can be stored in the contents of a symbolic link [The Open Group]. While
+    the POSIX/XSI standard mandates a historical minimum of just 8 bytes for _POSIX_SYMLINK_MAX,
+    the practical limit on Linux varies by filesystem: ext4 can store targets up to
+    PATH_MAX (typically 4096 bytes), while XFS hardcodes a 1024-byte ceiling and btrfs
+    allows roughly 3900–4095 bytes. Notably, pathconf(_PC_SYMLINK_MAX) returns -1
+    without setting errno, because POSIX acknowledges that pathconf() and open() follow
+    symbolic links, leaving no way to query a symlink''s own limit . Attempting to
+    create a symbolic link whose target exceeds the underlying filesystem''s boundary
+    causes symlink() or symlinkat() to fail with the classic ENAMETOOLONG error. For
+    Ruby and Go developers, this constraint is generally transparent during normal
+    filesystem operations, but it surfaces as a critical edge case when embedding
+    encoded payloads, long base64 strings, or generated URLs directly into symlink
+    contents as a form of lightweight metadata storage; in these scenarios, methods
+    like File.symlink or os.Symlink will raise an Errno::ENAMETOOLONG or syscall.ENAMETOOLONG
+    exception, forcing developers to explicitly hash, compress, or offload the target
+    data to an external file or database.'
