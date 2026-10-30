@@ -1,0 +1,13 @@
+MAX CANNON (See Cee MAX CANNON) defines the maximum number of bytes in a canonical
+(line-editing) input line that the terminal driver is guaranteed to buffer
+before delivering it to the reading process . While POSIX/XSI mandates a
+historical minimum of 255 bytes , and Linux publicly defines MAX CANON as 255
+in its headers , the practical limit on Linux has long been the line
+discipline's internal read buffer, N TTY BUF SIZE, which is 4096 bytes . This
+means the kernel can actually accept and edit canonical lines up to 4096 bytes
+despite the nominal 255-byte guarantee . Exceeding this boundary causes the
+kernel to discard input in excess of the limit until a newline is received .
+For Ruby and Go developers, this constraint is rarely encountered directly
+because high-level libraries like Readline or bufio typically manage terminal
+input through non-canonical or buffered modes, making MAX CANON relevant only
+when writing low-level terminal utilities that interact directly with termios.
