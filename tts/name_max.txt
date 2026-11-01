@@ -1,0 +1,14 @@
+NAME MAX See eC NAME MAX defines the maximum number of bytes in a single
+filename component, excluding the terminating null character [The Open Group].
+While the POSIX/XSI standard mandates a historical minimum of just 14 bytes,
+modern Linux filesystems like ext4 and XFS typically enforce a 255-byte
+limit—though some stacked or network filesystems impose tighter constraints,
+such as ecryptfs's 143-character cap. Attempting to create, rename, or open a
+file with a name exceeding this boundary causes system calls like open() or
+mkdir to immediately fail with the classic eeE NAME TOO LONG error. For Ruby and
+Go developers, this constraint is generally transparent until hitting edge
+cases like generating temporary files from long hashes or URLs; in such
+scenarios, methods like File.open or os.Create will raise an
+Err no E NAME TOO LONG or syscall E NAME TOO LONG exception, requiring developers to
+explicitly truncate or hash the filename to stay within the filesystem's byte
+limit.
